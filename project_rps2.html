@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<body>
+<button id="btn1">Rock</button>
+<button id="btn2">Paper</button>
+<button id="btn3">Scissors</button>
+<div id="result" style="white-space:pre;"></div>
+<div id="output" style="white-space: pre;"></div>
+
+<script>
+var playerScore=0;
+var aiScore=0;
+var roundNumber=0;
+
+var btn1=document.querySelector("#btn1");
+var btn2=document.querySelector("#btn2");
+var btn3=document.querySelector("#btn3");
+var output=document.querySelector ('#output');
+var result=document.querySelector ('#result');
+
+function computerPlay() {
+	random=Math.random();
+	if (random<=.66) {
+		if (random>.33) {
+			return 'paper';
+		} 
+		else {
+			return 'rock';
+		}
+	}
+	else {
+		return 'scissors';
+	}
+}
+
+function playRoundRock() {
+	if (roundNumber==0) {
+		output.textContent=" ";
+		roundNumber==1;
+	}
+	computerSelection=computerPlay();
+	if (computerSelection=='paper') {
+		aiScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Paper!\r\nYou lose! Paper beats Rock!";
+	}
+	else if (computerSelection=='scissors') {
+		playerScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Scissors!\r\nYou win! Rock beats Scissors!";
+	}
+	else {
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Rock!\r\nIt's a draw!";
+	}
+}
+
+
+function playRoundPaper() {
+	if (roundNumber==0) {
+		output.textContent=" ";
+		roundNumber==1;
+	}
+	computerSelection=computerPlay();
+	if (computerSelection=='rock') {
+		playerScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Rock!\r\nYou win! Paper beats Rock!";
+	}
+	else if (computerSelection=='scissors') {
+		aiScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Scissors!\r\nYou lose! Scissors beats Paper!";
+	}
+	else {
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Paper!\r\nIt's a draw!";
+	}
+}
+
+
+function playRoundScissors() {
+	if (roundNumber==0) {
+		output.textContent=" ";
+		roundNumber==1;
+	}
+	computerSelection=computerPlay();
+	if (computerSelection=='rock') {
+		aiScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Rock!\r\nYou lose! Rock beats Scissors!";
+	}
+	else if (computerSelection=='paper') {
+		playerScore++;
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Paper!\r\nYou win! Scissors beats Paper!";
+	}	
+	else {
+		roundNumber++;
+		output.textContent+="\r\nComputer picks Scissors!\r\nIt's a draw!";
+	}
+}
+
+btn1.addEventListener('click', playRoundRock);
+btn1.addEventListener('click', function(e) {
+output.textContent+="\r\nRound: "+roundNumber+"\r\nPlayer Score: "+playerScore+"\r\nAI Score :"+aiScore+"\r\n";
+checkRound();
+});
+
+btn2.addEventListener('click', playRoundPaper);
+btn2.addEventListener('click', function(e) {
+output.textContent+="\r\nRound: "+roundNumber+"\r\nPlayer Score: "+playerScore+"\r\nAI Score :"+aiScore+"\r\n";
+checkRound();
+});
+
+btn3.addEventListener('click', playRoundScissors);
+btn3.addEventListener('click', function(e) {
+output.textContent+="\r\nRound: "+roundNumber+"\r\nPlayer Score: "+playerScore+"\r\nAI Score :"+aiScore+"\r\n";
+checkRound();
+});
+function checkRound() {
+	result.textContent="";
+	if (roundNumber>4) {
+		roundNumber=0;
+		if (playerScore>aiScore) {
+			result.textContent+="\r\nYou win best out of 5!";
+		}
+		else if (aiScore>playerScore) {
+			result.textContent+="\r\nYou lose best out of 5!";
+		}
+		else {
+			result.textContent+="\r\nYou draw in a best of 5!"
+		}
+		playerScore=0;
+		aiScore=0;
+		alert("Game over!");
+	}
+}
+</script>
+</body>
+</html>
