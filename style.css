@@ -1,0 +1,33 @@
+body {
+    background-color: beige;
+}
+
+.result, .output, div {
+	text-align: center;
+}
+
+button {
+    height: 160px;
+    width: 160px;
+    border: 5px solid rgb(116,45,40);
+    border-radius: 40px;
+    background-color: white;
+    display: inline-block;
+}
+
+.buttons {
+    margin: 20px auto;
+    width: 500px;
+}
+
+#btn1 {
+    background-image: url("handRock.png");
+}
+
+#btn2 {
+    background-image: url("handPaper.png");
+}
+
+#btn3 {
+    background-image: url("handScissors.png");
+}
